@@ -1,8 +1,22 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from 'nanoid'
 import css from './ContactForm.module.css'
+import * as Yup from 'yup'
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 
-const ContactForm = ({validationSchema, handleFormInput}) => {
+const ContactForm = () => {
+    const validationSchema = Yup.object().shape({
+        name: Yup.string().min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('This field is required'),
+        number: Yup.string().min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('This field is required'),
+    })
+
+    const dispatch = useDispatch()
+
+    const handleFormInput = (contact) => {
+        dispatch(addContact(contact))
+    }
+
     return (
         <>
             <Formik

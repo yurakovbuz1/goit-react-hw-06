@@ -7,17 +7,17 @@ export const filtersSlice = createSlice({
             items: [],
         },
         filters: {
-            name: " ",
+            name: "",
         },
     },
 	reducers: {
-		changeFilter: (state, {payload}) => {
-			state.value = payload
+        changeFilter: (state, { payload }) => {
+			state.filters.name = payload
 		}
 	}
 })
 
-export const selectNameFilter = (state) => state.filters.name
-export const {changeFilter} = filtersSlice.actions
-export const filtersReducer = filtersSlice.reducer	
+export const selectNameFilter = (state) => state.filters.filters.name;
+export const { changeFilter } = filtersSlice.actions;
+export const filtersReducer = filtersSlice.reducer;
 

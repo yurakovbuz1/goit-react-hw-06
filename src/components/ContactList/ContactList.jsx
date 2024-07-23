@@ -23,6 +23,8 @@ const ContactList = () => {
         dispatch(deleteContact(contactId));   
     };    
 
+    console.log('contactList :>> ', contactList);
+
     return (
         <>
             <ul className={css.contactList}>

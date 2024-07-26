@@ -8,20 +8,8 @@ const ContactList = () => {
     const contacts = useSelector(selectContacts);
     const filterValue = useSelector(selectNameFilter);
 
-    let contactList;
-    if (filterValue !== "") {
-        contactList = contacts.filter(contact => 
-            contact.name.toLowerCase().includes(filterValue.toLowerCase())
-        )
-    } else {
-        contactList = contacts;
-    }
-
-    const dispatch = useDispatch();
-
-    const handleDelete = (contactId) => {     
-        dispatch(deleteContact(contactId));   
-    };    
+    const contactList = contacts.filter(contact => 
+            contact.name.toLowerCase().includes(filterValue?.toLowerCase()))
 
     console.log('contactList :>> ', contactList);
 
@@ -30,7 +18,7 @@ const ContactList = () => {
             <ul className={css.contactList}>
                 {contactList.map((contact) => (
                 <li key={contact.id} className={css.listItem}>
-                    <Contact id={contact.id} name={contact.name} number={contact.number} onDelete={handleDelete} />
+                    <Contact id={contact.id} name={contact.name} number={contact.number} />
                 </li>
                 ))}
             </ul>
@@ -38,4 +26,4 @@ const ContactList = () => {
     );
 }
 
-export default ContactList
+export default ContactList;
